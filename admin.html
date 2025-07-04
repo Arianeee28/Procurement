@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard UI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div>
+        <div class="profile-wrapper">
+  <div class="profile">
+    <div class="avatar"></div>
+    <div>
+      <strong>Justine Tabor</strong><br>
+      <small>Administrator</small>
+    </div>
+  </div>
+  <div class="profile-divider"></div>
+</div>
+
+        <nav class="menu">
+          <a href="#"><img src="round_14133865.png" alt="Dashboard Icon">Dashboard</a>
+          <div class="menu-item">
+  <a href="#" id="procurementToggle">
+    <img src="box_11547180.png" alt="Procurement Icon">Procurement
+    <i id="procurementArrow" class="fas fa-caret-right" style="margin-left:auto;"></i>
+  </a>
+  <div class="submenu" id="procurementMenu">
+    <a href="#" id="showItinerary">Itinerary</a>
+    <a href="#" id="showRequest">Add/View Items</a>
+  </div>
+</div>
+
+          <div class="menu-item">
+  <a href="#" id="teamToggle">
+    <img src="people_12159750.png" alt="Team Icon">Team
+    <i id="teamArrow" class="fas fa-caret-right" style="margin-left:auto;"></i>
+  </a>
+  <div class="submenu" id="teamMenu">
+    <a href="#" id="showEmployees">Employees</a>
+    <a href="#" id="showAddAccount">Add Account</a>
+    <a href="#" id="showAddVariables">Add Variables</a>
+  </div>
+</div>
+
+        </nav>
+      </div>
+      <div class="logout">
+  <a href="#"><i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>Logout</a>
+</div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <h1 id="pageTitle">Dashboard</h1>
+<!-- Add Account Section -->
+<div id="addAccountSection" style="display: none;">
+  
+  <div class="add-account-container">
+    <div class="add-header-bar"></div>
+    <form class="add-account-form">
+      <!-- Left Column -->
+      <div class="form-column">
+        <div class="form-group">
+          <label>First name:</label>
+          <input type="text" />
+        </div>
+        <div class="form-group">
+          <label>Last name:</label>
+          <input type="text" />
+        </div>
+        <div class="form-group">
+          <label>Gender:</label>
+          <select>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Address:</label>
+          <input type="text" />
+        </div>
+        <div class="form-group">
+          <label>Contact number:</label>
+          <input type="text" />
+        </div>
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="email" />
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="form-column">
+        <div class="form-group">
+          <label>User name:</label>
+          <input type="text" />
+        </div>
+        <div class="form-group">
+          <label>Password:</label>
+          <input type="password" />
+        </div>
+        <div class="form-group">
+          <label>Permission level:</label>
+          <select>
+            <option>Level 1</option>
+            <option>Level 2</option>
+            <option>Level 3</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Department:</label>
+          <select>
+            <option>ICT</option>
+            <option>City Mayor's Office</option>
+            <option>HR</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>E-signature:</label>
+          <input type="file" />
+        </div>
+      </div>
+
+      <!-- Button Row -->
+      <div class="form-buttons">
+        <button type="submit" class="btn-create">Create</button>
+        <button type="reset" class="btn-cancel">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+      <!-- Dashboard Cards -->
+      <div class="cards">
+        <!-- Active Accounts -->
+        <div class="card clickable" onclick="toggleAccountDetails()">
+          <div class="card-header">
+            <span>Total active accounts</span>
+            <input type="text" placeholder="Insert Employee Name">
+          </div>
+          <div class="card-content" id="accountCardContent">
+            <div id="accountCountWrapper">
+              <h2 id="accountCount">204</h2>
+            </div>
+            <div id="accountDetails" style="display: none;">
+              <div class="employee-entry"><strong>Department:</strong> ICT<br>Employee name: Justine Michael Tabor</div>
+              <div class="employee-entry"><strong>Department:</strong> ICT<br>Employee name: Precious Damian</div>
+              <div class="employee-entry"><strong>Department:</strong> ICT<br>Employee name: Keer Francisco</div>
+              <div class="employee-entry"><strong>Department:</strong> ICT<br>Employee name: Oscar Organiza</div>
+              <div class="employee-entry"><strong>Department:</strong> ICT<br>Employee name: Tjay the Great</div>
+              <div class="employee-entry"><strong>Department:</strong> ICT<br>Employee name: Robert Downey Junior</div>
+            </div>
+            <div class="bar" id="accountBar"></div>
+          </div>
+        </div>
+
+        <!-- Item Status -->
+        <div class="card clickable" onclick="alert('Viewing Item Status Details')">
+          <div class="card-header">
+            <span>Item Status</span>
+            <input type="text" placeholder="Insert Control Number">
+          </div>
+          <div class="card-content">
+            <p><img src="box_11547180.png" alt="Item Icon" style="width: 16px; height: 16px; margin-right: 6px;"><strong>ICT-4345-25</strong></p>
+            <p><span class="dot green"></span> Office Head</p>
+            <p><span class="dot green"></span> Budget</p>
+            <p><span class="dot green"></span> City Mayor's Office</p>
+            <p><span class="dot blue"></span> Bids and Award Committee</p>
+          
+          </div>
+        </div>
+
+        <!-- Budget -->
+        <div class="card clickable" onclick="toggleBudgetDetails()">
+          <div class="card-header">
+            <span>Budget Remaining</span>
+            <input type="text" placeholder="Insert Department Name">
+          </div>
+          <div class="card-content">
+            <div class="budget-entry">
+              <p><strong>Department:</strong> ICT</p>
+              <p><strong>Budget:</strong> ₱2,546,890.08</p>
+            </div>
+            <div class="budget-entry">
+              <p><strong>Department:</strong> City Mayor's Office</p>
+              <p><strong>Budget:</strong> ₱10,910,996.04</p>
+            </div>
+            <div id="moreBudgetDetails" style="display: none;">
+              <div class="budget-entry">
+                <p><strong>Department:</strong> HR Department</p>
+                <p><strong>Budget:</strong> ₱1,250,000.00</p>
+              </div>
+              <div class="budget-entry">
+                <p><strong>Department:</strong> Engineering Office</p>
+                <p><strong>Budget:</strong> ₱3,789,000.00</p>
+              </div>
+              <div class="budget-entry">
+                <p><strong>Department:</strong> Accounting Division</p>
+                <p><strong>Budget:</strong> ₱5,345,678.90</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <!-- Procurement Section -->
+<div id="procurementSection" class="section hidden">
+  <div class="procurement-controls">
+    <input type="text" placeholder="Insert Control Number" class="control-input">
+    <button class="filter-button">Filter</button>
+  </div>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Control No.</th>
+          <th>Name</th>
+          <th>Unit</th>
+          <th>Quantity</th>
+          <th>Cost Per Unit</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="dot red"></span> ICT-4523-25</td><td>Bridgetone Wheel, 18”</td><td>pcs</td><td>4</td><td>20,000</td><td>80,000</td></tr>
+        <tr><td><span class="dot green"></span> CMO-2323-25</td><td>Zonrox</td><td>pcs</td><td>5</td><td>10,000</td><td>80,525</td></tr>
+        <tr><td><span class="dot green"></span> CMO-4521-25</td><td>Alcohol</td><td>bottle</td><td>3</td><td>10,000</td><td>71,222</td></tr>
+        <tr><td><span class="dot red"></span> ICT-4520-25</td><td>Peanut Butter</td><td>bottle</td><td>5</td><td>10,000</td><td>80,456</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Order Info Modal -->
+<div id="orderInfoModal" class="modal-overlay" style="display: none;">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Order Info</h2>
+      <span id="closeModal" class="close-btn">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="modal-row">
+        <span><strong>ICT-4523-25</strong></span>
+        <span style="margin-left:auto;">05/12/2025</span>
+      </div>
+
+      <div class="modal-status">
+        <img src="box_11547180.png" alt="Item" style="width: 18px;">
+        <span class="dot green"></span>
+        <span class="dot red"></span>
+        <span>Office Head</span>
+      </div>
+
+      <form class="order-form">
+        <input type="text" value="Department: Information and Communication Technology" readonly>
+        <input type="text" value="Item: Bridgestone All Terrain Wheel, 18”" readonly>
+
+        <div class="flex-row">
+          <input type="text" value="Budget: 80,000" readonly>
+          <input type="text" value="Cost per Unit: 20,000" readonly>
+        </div>
+        <div class="flex-row">
+          <input type="text" value="Quantity: 4" readonly>
+          <input type="text" value="Unit: pcs" readonly>
+        </div>
+        <div class="flex-row">
+          <input type="text" value="Status: Cancelled" class="cancelled" readonly>
+          <input type="text" value="Total: 80,000" readonly>
+        </div>
+
+        <textarea placeholder="Notes:" readonly></textarea>
+        <textarea placeholder="Notes:" readonly></textarea>
+      </form>
+    </div>
+    <div class="modal-footer"></div>
+  </div>
+</div>
+
+      <!-- Profile Section -->
+<div id="profileSection" class="profile-section">
+  <div class="profile-card">
+    <div class="profile-header">
+  <div class="profile-navigator">
+    <div class="profile-avatar"></div>
+    <div class="profile-info">
+      <strong>Justine Tabor</strong><br>
+      <small>Administrator</small>
+    </div>
+  </div>
+</div>
+    <div class="profile-body">
+      <!-- Left Column -->
+     <div class="profile-left">
+  <div class="form-row"><label>First name:</label><input type="text" readonly></div>
+  <div class="form-row"><label>Last name:</label><input type="text" readonly></div>
+  <div class="form-row"><label>Gender:</label><input type="text" readonly></div>
+  <div class="form-row"><label>Address:</label><input type="text" readonly></div>
+  <div class="form-row"><label>Contact number:</label><input type="text" readonly></div>
+  <div class="form-row"><label>Email:</label><input type="email" readonly></div>
+  <div class="form-row"><label>Password:</label><input type="password" readonly></div>
+  <small class="change-password">Change password</small>
+</div>
+
+
+<div class="profile-right">
+    <div class="form-row"></div>
+  <textarea placeholder="Add biography" readonly></textarea>
+</div>
+    </div>
+
+    <div class="profile-footer">
+  <button id="editBtn" class="action-btn">Edit</button>
+<button id="saveBtn" class="action-btn">Save</button>
+</div>
+
+  </div>
+</div>
+      <!-- Team Section -->
+      <div id="teamSection" class="section hidden">
+  <div class="team-controls">
+    <input type="text" placeholder="Insert Employee Name" class="control-input">
+    <button class="add-button" onclick="addAccount()">Add Account</button>
+    <button class="filter-button">Filter</button>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Employee ID</th>
+          <th>Name</th>
+          <th>Position</th>
+          <th>Permission Level</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="dot green"></span> ICT-10-2543</td><td>Justine Tabor</td><td>Technician</td><td>Level 3</td><td>Active</td></tr>
+        <tr><td><span class="dot red"></span> ICT-9-2125</td><td>Precious Damian</td><td>Junior Developer</td><td>Level 2</td><td>Inactive</td></tr>
+        <tr><td><span class="dot green"></span> ICT-8-1225</td><td>Keer Francisco</td><td>Encoder</td><td>Level 1</td><td>Active</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  
+  <!-- Add Variables Section -->
+<div id="addVariablesSection" style="display: none; margin-top: 30px;">
+  <div class="cards">
+    <!-- Add Department Form -->
+    <div class="card">
+  <h3>Add Department</h3>
+  <div class="department-form">
+    <label for="departmentInput" class="department-label">Department:</label>
+    <input type="text" id="departmentInput" placeholder="Enter department name" />
+  </div>
+  <div class="department-btn-container">
+    <button id="saveDepartmentBtn" class="btn-create">Save</button>
+  </div>
+</div>
+
+
+    <!-- Department List -->
+    <div class="card">
+      <h3>List of Department</h3>
+      <ul>
+        <li>Information and Communication Technology (ICT)</li>
+        <li>City Mayor’s Office (CMO)</li>
+        <li>State of Hearing and Institute Technology (SHIT)</li>
+      </ul>
+      </div>
+      <script src="admin.js"></script>
+</body>
+</html>
