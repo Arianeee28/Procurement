@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <div>
+      <div class="profile">
+        <div></div>
+        <strong>Justine Tabor</strong><br />Administrator
+      </div>
+      <div class="nav-link active" id="dashboardLink"><i class="fas fa-chart-bar"></i> Dashboard</div>
+      <div class="nav-link has-submenu" id="procurementToggle"><i class="fas fa-box"></i> Procurement</div>
+      <div class="submenu" id="procurementMenu">
+        <div class="submenu-item" id="showItinerary">Itinerary</div>
+        <div class="submenu-item" id="showRequest">Request</div>
+      </div>
+    </div>
+    <div class="logout"><i class="fas fa-sign-out-alt"></i> Logout</div>
+  </div>
+
+  <div class="main">
+    <div class="dashboard-title">Dashboard</div>
+
+    <div class="grid">
+      <!-- Notifications -->
+      <div class="card">
+        <h2>Notifications</h2>
+        <div id="notifContainer">
+          <div class="notification-entry cancelled">Ariane Jade Bote<br />Department: Budget<br />Cancelled<br />Control Number: ICT-4523-25</div>
+          <div class="notification-entry approved">Keer Christian Francisco<br />Department: City Mayor’s Office<br />Approved<br />Control Number: ICT-4345-25</div>
+          <div class="notification-entry approved">Janssen Na<br />Department: Budget<br />Approved<br />Control Number: ICT-4345-25</div>
+          <div class="notification-entry cancelled">Ariane Jade Bote<br />Department: Budget<br />Cancelled<br />Control Number: ICT-4342-25</div>
+        </div>
+        <button id="toggleNotifBtn" class="toggle-btn">Show More</button>
+      </div>
+
+      <!-- Item Status -->
+      <div class="card">
+        <h2>Item Status</h2>
+        <strong>ICT-4345-25</strong>
+        <input type="text" placeholder="Insert Control Number" />
+        <div id="statusSteps" class="status-steps">
+          <div class="step completed"><div class="label">Office Head</div></div>
+          <div class="step completed"><div class="label">Budget</div></div>
+          <div class="step completed"><div class="label">City Mayor’s Office</div></div>
+          <div class="step current"><div class="label">Bids and Award Committee</div></div>
+        </div>
+        <button id="toggleStatusBtn" class="toggle-btn">Show More</button>
+      </div>
+
+      <!-- Receipts -->
+      <div class="card">
+        <h2>Receipts</h2>
+        <div id="receiptContainer">
+          <div class="receipt-entry">Control Number: ICT-5001-25<br />Item: Asus Laptop<br />Date: 06/18/2025</div>
+          <div class="receipt-entry">Control Number: ICT-5000-25<br />Item: Legion Laptop<br />Date: 05/12/2025</div>
+        </div>
+        <button id="toggleReceiptBtn" class="toggle-btn">Show More</button>
+      </div>
+    </div>
+
+    <!-- Itinerary Section -->
+    <div id="itinerarySection" style="display: none;">
+      <div class="dashboard-title">Itinerary</div>
+      <div class="filter-bar">
+        <input type="text" id="itineraryInput" placeholder="Insert Control Number..." />
+        <button id="filterBtn">Filter</button>
+        <button id="resetBtn">Reset</button>
+      </div>
+      <div class="card">
+        <div class="itinerary-scroll">
+          <table class="itinerary-table" id="itineraryTable">
+            <thead>
+              <tr>
+                <th>Control No.</th>
+                <th>Name</th>
+                <th>Unit</th>
+                <th>Quantity</th>
+                <th>Cost Per Unit</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="circle blue"></span> ICT-5001-25</td>
+                <td>Asus Laptop</td>
+                <td>pcs</td>
+                <td>4</td>
+                <td>20,000</td>
+                <td>80,000</td>
+              </tr>
+              <tr>
+                <td><span class="circle red"></span> ICT-5000-25</td>
+                <td>Legion Laptop</td>
+                <td>pcs</td>
+                <td>5</td>
+                <td>10,000</td>
+                <td>50,000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Request Section -->
+    <div id="requestSection" style="display: none;">
+      <div class="dashboard-title">Request</div>
+      <div class="request-form-container">
+        <div class="request-form">
+          <div class="form-header">Request Slip</div>
+          <select id="department">
+            <option selected disabled>Department</option>
+            <option>ICT</option>
+            <option>Budget</option>
+            <option>Mayor's Office</option>
+          </select>
+          <select id="budget">
+            <option selected disabled>Budget</option>
+            <option>Capital Outlay</option>
+            <option>Maintenance</option>
+          </select>
+          <div class="row">
+            <input type="text" id="unit" placeholder="Unit" />
+            <input type="number" id="quantity" placeholder="Quantity" />
+          </div>
+          <input type="number" id="cost" placeholder="Cost per Unit" />
+          <select id="itemName">
+            <option disabled selected>Select an Item</option>
+            <option>Asus Laptop</option>
+            <option>Legion Laptop</option>
+            <option>Bridgestone All Terrain Wheel, 18”</option>
+            <option>HP Printer</option>
+            <option>Dell Monitor</option>
+          </select>
+          
+          <textarea id="description" placeholder="Description"></textarea>
+          <div class="btn-row">
+            <button id="addItemBtn" class="btn-green">Add Item</button>
+            <button id="cancelItemBtn" class="btn-gray">Cancel</button>
+          </div>
+        </div>
+
+        <div class="preview-box">
+          <div class="form-header">Item preview</div>
+          <div id="itemPreview"></div>
+          <small id="controlNumber">Control Number: ICT-5002-25</small><br />
+          <small>Date: 06/24/2025</small>
+          <div class="btn-row bottom">
+            <button class="btn-green" id="placeOrderBtn">Place Order</button>
+            <button class="btn-red" id="cancelOrderBtn">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Order Info Modal -->
+<div id="orderInfoModal" class="modal-overlay" style="display:none">
+  <div class="modal order-modal">
+    <div class="modal-header">
+      <h2>Order Info</h2>
+      <button id="closeModal" class="btn-close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-top">
+        <strong id="modalControlNo">ICT-XXXX-XX</strong>
+        <span id="modalDate">MM/DD/YYYY</span>
+      </div>
+
+      <div class="modal-status">
+        <span class="dot green" id="modalDot"></span>
+        <span id="modalRole">Office Head</span>
+      </div>
+
+      <div class="modal-fields">
+        <input id="modalDept" type="text" readonly>
+        <input id="modalItem" type="text" readonly>
+        <div class="flex-row">
+          <input id="modalBudget" type="text" readonly>
+          <input id="modalCost" type="text" readonly>
+        </div>
+        <div class="flex-row">
+          <input id="modalQty" type="text" readonly>
+          <input id="modalUnit" type="text" readonly>
+        </div>
+        <div class="flex-row">
+          <input id="modalStatus" type="text" readonly>
+          <input id="modalTotal" type="text" readonly>
+        </div>
+        <textarea id="modalNotes" placeholder="Notes:" readonly></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Profile Section -->
+<div id="profileSection" style="display: none;">
+  <div class="dashboard-title">Profile</div>
+  <div class="card profile-card">
+    <div class="profile-header">
+      <div class="avatar"></div>
+      <div>
+        <strong>Justine Tabor</strong><br />
+        Administrator
+      </div>
+    </div>
+    <div class="profile-body">
+      <div class="profile-left">
+        <label>First name:</label><input type="text" />
+        <label>Last name:</label><input type="text" />
+        <label>Gender:</label><input type="text" />
+        <label>Address:</label><input type="text" />
+        <label>Contact number:</label><input type="text" />
+        <label>Email:</label><input type="email" />
+        <label>Password:</label><input type="password" />
+        <small style="margin-top: 5px;">Change password</small>
+      </div>
+      <div class="profile-right">
+        <textarea placeholder="Add biography"></textarea>
+      </div>
+    </div>
+    <button class="edit-btn">Edit</button>
+  </div>
+</div>
+  
+  <!-- ✅ NEW ITEM DETAIL MODAL -->
+  <div id="itemDetailModal" class="item-detail-modal" style="display: none;">
+
+      <span class="close-btn" id="closeDetailBtn">&times;</span>
+      <h2>Order Info</h2>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
+<div id="orderInfoModal">...</div>
+
